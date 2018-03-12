@@ -1,0 +1,30 @@
+/* Styles Sheet for The Kimes Tribune */
+
+h1 {border-bottom: solid 5px black;
+    color: black;
+    font-size: 96px;
+    padding: 10px;
+    }
+
+h2 {font-size: 56px;}
+
+h3 {font-size: 32px;}
+
+.title {text-align: center;}
+
+.subheader {border-bottom: solid 5px black;
+/*            border-top: solid 5px black; */
+            padding-top: 10px;
+            color: black;
+            font-size: 24px;
+            }
+
+.container {border-bottom: solid 5px black;}
+
+/* .col-sm-4 {border-right: solid 5px;} */
+
+#right {text-align: right;}
+
+#cubs_ad {text-align: justify;}
+
+/*#stories {border-bottom: solid 5px;}*/
