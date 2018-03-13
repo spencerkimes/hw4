@@ -106,15 +106,27 @@ let guardianPolitics = function(data){
 
   info = data
 
-  let Title = info.response.results[0].webTitle
+  let x = 0
 
-  let Url = info.response.results[0].webUrl
+  let length = info.response.results.length
 
-  $("#guardianTitle").text(Title)
+  while (x < length) {
 
-  //$("#guardLink").text(Url)
+    let Title = info.response.results[x].webTitle
 
-  $("#guardLink").attr("href", Url)
+    let Url = info.response.results[x].webUrl
+
+    let html = "<h4>" + Title + "</h4>"
+
+    html = html + "<a href = " + Url + "> Full Article</a>"
+
+    $("#guardianLists").append(html)
+
+    x = x + 1
+
+  }
+
+  // create javascript code that will create new elements in HTML
 
 }
 
@@ -130,6 +142,111 @@ let getGuardian = function() {
 
 }
 
-$("#guardian").on("click", getGuardian)
+$(document).ready(getGuardian)
+// $("#guardian").on("click", getGuardian)
 
 // New York Times Movie APIs
+
+// NYT API: b235cd09a5124783975ba3221c211edd
+
+let timesStories = function(data) {
+
+  console.log("got stories data", data)
+
+  info = data
+
+  let x = 0
+
+  let length = info.results.length
+
+  while (x < length) {
+
+    let title = info.results[x].title
+
+    let thumb = info.results[x].multimedia[1].url
+
+    let link = info.results[x].url
+
+    let html = "<h4>" + title + "</h4>"
+
+    html = html + '<img src= ' + thumb + '>'
+
+    html = html + "<p></p>"
+
+    html = html + "<a href = " + link + "> full story</a>"
+
+    html = html + "<p></p>"
+
+    $("#storiesList").append(html)
+
+    x = x + 1
+
+  }
+
+}
+
+let getTimesStories = function () {
+
+  let apiKey = 'b235cd09a5124783975ba3221c211edd'
+
+  let storiesURL = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key='
+
+  storiesURL = storiesURL + apiKey
+
+  fetch(storiesURL).then(convertToJSON).then(timesStories).catch(displayError)
+
+}
+
+$(document).ready(getTimesStories)
+// $("#times").on("click", getTimesStories)
+
+let timesMovies = function(data) {
+
+  console.log("got movies data", data)
+
+  info = data
+
+  let x = 0
+
+  let length = info.results.length
+
+  while (x < length) {
+
+    let Title0 =  info.results[x].display_title
+
+    let summary0 = info.results[x].summary_short
+
+    let image0 = info.results[x].multimedia.src
+
+    let link0 = info.results[x].link.url
+
+    let html = '<h4>' + Title0 + '</h4>'
+
+    html = html + "<a href = " + link0 + "> full review</a>"
+
+    html = html + '<p>' + summary0 + '</p>'
+
+    html = html + '<img src= ' + image0 + '>'
+
+    html = html + "<p></p><p></p>"
+
+    $("#inject").append(html)
+
+    x = x + 1
+
+  }
+
+}
+
+let getTimesMovies = function() {
+
+  let apiKey = 'b235cd09a5124783975ba3221c211edd'
+
+  let timesURL = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key='
+
+  timesURL += apiKey
+
+  fetch(timesURL).then(convertToJSON).then(timesMovies).catch(displayError)
+
+}
+$(document).ready(getTimesMovies)
