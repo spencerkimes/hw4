@@ -1,5 +1,10 @@
 /* Styles Sheet for The Kimes Tribune */
 
+/* background-color: blue; */
+
+body {background-color: #E0FFFF;
+      }
+
 h1 {border-bottom: solid 5px black;
     color: black;
     font-size: 96px;
